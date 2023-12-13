@@ -1,0 +1,66 @@
+name: build 
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  tfsec:
+    name: Run TFsec
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Terraform security scan
+        uses: triat/terraform-security-scan@v3.1.0
+        with:
+          tfsec_exclude: azure-keyvault-no-purge,azure-storage-queue-services-logging-enabled,azure-storage-allow-microsoft-service-bypass,azure-network-no-public-egress,azure-network-no-public-ingress,azure-network-disable-rdp-from-internet,azure-network-ssh-blocked-from-internet,azure-database-postgres-configuration-log-connections,azure-database-postgres-configuration-connection-throttling,azure-database-no-public-access,azure-database-postgres-configuration-log-checkpoints,azure-database-secure-tls-policy,azure-database-enable-audit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  docs:
+    name: Run Terraform-docs
+    runs-on: ubuntu-latest
+    needs: tfsec
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Render terraform docs inside the TERRAFORM.md
+      uses: terraform-docs/gh-actions@v1.0.0
+      with:
+        working-dir: .
+        output-file: TERRAFORM.md
+        output-method: inject
+        recursive: "true"
+        recursive-path: "modules"
+        git-push: "true"
+  artifacts:
+    name: Create artifacts
+    runs-on: ubuntu-latest
+    needs: docs
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Setup MinVer
+      run: |
+        dotnet tool install --global minver-cli --version 4.2.0
+    - name: Calculate Version
+      run: |
+        echo "MINVERVERSIONOVERRIDE=$($HOME/.dotnet/tools/minver -t v. -m 1.0 -d preview)" >> $GITHUB_ENV
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: agw-tests-${{ env.MINVERVERSIONOVERRIDE }}
+        path: |
+          ./modules/
+          ./*.tf
+          ./*.md

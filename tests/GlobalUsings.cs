@@ -1,0 +1,16 @@
+global using System;
+global using System.Net;
+global using System.Net.Http;
+global using System.Text;
+global using System.Threading.Tasks;
+global using Xunit;
+global using Microsoft.Azure.Cosmos.Fluent;
+global using Azure.Identity;
+global using Azure.Core;
+global using Azure.Messaging.EventHubs;
+global using Azure.Messaging.EventHubs.Producer;
+global using Azure.Security.KeyVault.Secrets;
+global using Azure.Storage.Blobs;
+global using Microsoft.Data.SqlClient;
+global using Npgsql;
+global using Aurora;

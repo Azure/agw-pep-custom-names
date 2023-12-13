@@ -1,0 +1,30 @@
+variable "resource_group_name" {}
+variable "location" {}
+variable "contaner_group_name" {}
+variable "aci_storage_account_name" {}
+variable "tenant_id" {}
+variable "client_id" {}
+variable "client_secret" {}
+variable "subnet_id" {}
+variable "name_server_ip" {}
+variable "gateway_private_ip" {}
+variable "public_ip" {}
+variable "tls_tcp_proxy_enabled" {}
+variable "storage_account_name" {}
+variable "eventhub_namespace" {}
+variable "eventhub_name" {}
+variable "eventhub_custom_endpoint" {}
+variable "keyvault_name" {}
+variable "cosmosdb_key" {}
+variable "cosmosdb_custom_endpoint" {}
+variable "function_custom_endpoint" {}
+variable "function_scm_custom_endpoint" {}
+variable "sql_name" {}
+variable "sql_password" {}
+variable "sql_server_name" {}
+variable "postgresql_name" {}
+variable "postgresql_password" {}
+variable "postgresql_server_name" {}
+variable "tags" {
+  default = {}
+}
