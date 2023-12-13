@@ -1,4 +1,4 @@
-[![build](https://github.com/azure/agw-pep-custom-names/actions/workflows/main.yaml/badge.svg)](https://github.com/azure/agw-pep-custom-names/actions/workflows/main.yaml)
+[![build](https://github.com/Azure/agw-pep-custom-names/actions/workflows/main.yaml/badge.svg)](https://github.com/Azure/agw-pep-custom-names/actions/workflows/main.yaml)
 
 # Azure Application Gateway: Private Endpoint Custom Name Solution Reference Architecture and Tests
 
