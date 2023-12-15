@@ -14,5 +14,6 @@ COPY "./tests/Aurora.Tests.csproj" .
 RUN dotnet restore Aurora.Tests.csproj
 
 COPY ./tests/ .
+RUN chmod +x ./scripts/run.sh
 RUN dotnet build Aurora.Tests.csproj -c Release
 ENTRYPOINT ["./scripts/run.sh"]

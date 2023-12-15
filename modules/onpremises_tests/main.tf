@@ -16,7 +16,7 @@ resource "azurerm_container_group" "tests" {
 
   container {
     name     = "${var.contaner_group_name}-container"
-    image    = "cmendibl3/aurora"
+    image    = "ghcr.io/azure/agw-pep-custom-names/agw-pep-custom-names:1.0.0"
     cpu      = "1.0"
     memory   = "1.0"
     commands = []
