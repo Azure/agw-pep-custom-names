@@ -14,6 +14,7 @@ module "current_public_ip" {
 
 locals {
   name_sufix                      = substr(lower(random_id.random.hex), 1, 4)
+  resource_group                  = "${var.resource_group}-${local.name_sufix}"
   storage_account_name            = "${var.sa_name}${local.name_sufix}"
   aci_storage_account_name        = "${var.sa_name}aci${local.name_sufix}"
   function_name                   = "${var.func_name}-${local.name_sufix}"
@@ -27,7 +28,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group
+  name     = local.resource_group
   location = var.location
 }
 

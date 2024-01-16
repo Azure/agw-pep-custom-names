@@ -5,7 +5,7 @@ variable "resource_group" {
 
 # Location
 variable "location" {
-  default = "westeurope"
+  default = "northeurope"
 }
 
 # Cosmos DB database name
