@@ -82,6 +82,10 @@ variable "deploy_cosmos" {
   default = true
 }
 
+variable "deploy_cognitive_services" {
+  default = false
+}
+
 # true if TLS/TCP Proxy feature is enabled
 variable "tls_tcp_proxy_enabled" {
   default = true

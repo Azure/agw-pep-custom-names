@@ -17,6 +17,7 @@ locals {
   deploy_purview                        = var.deploy_purview ? [1] : []
   deploy_function                       = var.deploy_function ? [1] : []
   deploy_cosmos                         = var.deploy_cosmos ? [1] : []
+  deploy_cognitive_services             = var.deploy_cognitive_services ? [1] : []
   enable_gateway_key_vault_integration  = var.enable_gateway_key_vault_integration ? [1] : []
   disable_gateway_key_vault_integration = var.enable_gateway_key_vault_integration ? [] : [1]
   private_ip_address                    = cidrhost(var.gateway_subnet_address_prefix, 254)
@@ -67,6 +68,12 @@ locals {
   purview_portal_listener_name             = "purview-portal-httplstn"
   purview_portal_request_routing_rule_name = "purview-portal-rqrt"
   purview_portal_probe_name                = "purview-portal-probe"
+
+  cog_backend_address_pool_name = "cog-beap"
+  cog_http_setting_name         = "cog-be-htst"
+  cog_listener_name             = "cog-httplstn"
+  cog_request_routing_rule_name = "cog-rqrt"
+  cog_probe_name                = "cog-probe"
 
   sql_backend_address_pool_name = "sql-beap"
 
@@ -382,6 +389,72 @@ resource "azurerm_application_gateway" "gateway" {
     http_listener_name         = local.kv_listener_name
     backend_address_pool_name  = local.kv_backend_address_pool_name
     backend_http_settings_name = local.kv_http_setting_name
+  }
+
+  dynamic "backend_address_pool" {
+    for_each = local.deploy_cognitive_services
+    content {
+      name = local.cog_backend_address_pool_name
+      fqdns = [
+        var.use_public_fqdn ? var.cognitive_services_fqdn : var.cognitive_services_private_fqdn
+      ]
+    }
+  }
+
+  dynamic "probe" {
+    for_each = local.deploy_cognitive_services
+    content {
+      name                                      = local.cog_probe_name
+      protocol                                  = "Https"
+      pick_host_name_from_backend_http_settings = true
+      path                                      = "/"
+      match {
+        body        = ""
+        status_code = ["404"]
+      }
+      port                = 443
+      timeout             = 30
+      interval            = 30
+      unhealthy_threshold = 3
+    }
+  }
+
+  dynamic "backend_http_settings" {
+    for_each = local.deploy_cognitive_services
+    content {
+      name                  = local.cog_http_setting_name
+      cookie_based_affinity = "Disabled"
+      path                  = "/"
+      port                  = 443
+      protocol              = "Https"
+      request_timeout       = 60
+      host_name             = var.cognitive_services_fqdn
+      probe_name            = local.cog_probe_name
+    }
+  }
+
+  dynamic "http_listener" {
+    for_each = local.deploy_cognitive_services
+    content {
+      name                           = local.cog_listener_name
+      frontend_ip_configuration_name = local.frontend_ip_configuration_name
+      frontend_port_name             = local.frontend_port_name
+      protocol                       = "Https"
+      ssl_certificate_name           = "enterprise-certificate"
+      host_name                      = "cog.contoso.corp"
+    }
+  }
+
+  dynamic "request_routing_rule" {
+    for_each = local.deploy_cognitive_services
+    content {
+      name                       = local.cog_request_routing_rule_name
+      rule_type                  = "Basic"
+      priority                   = 110
+      http_listener_name         = local.cog_listener_name
+      backend_address_pool_name  = local.cog_backend_address_pool_name
+      backend_http_settings_name = local.cog_http_setting_name
+    }
   }
 
   dynamic "backend_address_pool" {

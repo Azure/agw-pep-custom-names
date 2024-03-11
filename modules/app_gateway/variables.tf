@@ -41,6 +41,9 @@ variable "deploy_sql" {}
 variable "postgresql_fqdn" {}
 variable "postgresql_private_fqdn" {}
 variable "deploy_postgresql" {}
+variable "cognitive_services_fqdn" {}
+variable "cognitive_services_private_fqdn" {}
+variable "deploy_cognitive_services" {}
 variable "tags" {
   default = {}
 }

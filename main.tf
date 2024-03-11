@@ -360,6 +360,22 @@ module "postgresql_flexible_server" {
   ]
 }
 
+# Create Cognitive Services
+module "cog" {
+  count                       = var.deploy_cognitive_services ? 1 : 0
+  source                      = "./modules/cog"
+  resource_group_name         = azurerm_resource_group.rg.name
+  location                    = azurerm_resource_group.rg.location
+  cognitive_services_name     = "cog-${local.name_sufix}"
+  virtual_network_id          = module.vnet.vnet_hub_id
+  private_endpoints_subnet_id = module.vnet.subnet_privateendpoints_id
+  tags                        = var.tags
+  depends_on = [
+    module.dns,
+    module.nsg
+  ]
+}
+
 # Create App Gateway Identity
 module "app_gateway_identity" {
   source                = "./modules/managed_identity"
@@ -413,6 +429,9 @@ module "app_gateway" {
   postgresql_fqdn                      = var.deploy_postgresql ? module.postgresql[0].fqdn : ""
   postgresql_private_fqdn              = var.deploy_postgresql ? module.postgresql[0].private_fqdn : ""
   deploy_postgresql                    = var.deploy_postgresql
+  cognitive_services_fqdn              = var.deploy_cognitive_services ? module.cog[0].fqdn : ""
+  cognitive_services_private_fqdn      = var.deploy_cognitive_services ? module.cog[0].private_fqdn : ""
+  deploy_cognitive_services            = var.deploy_cognitive_services
   tls_tcp_proxy_enabled                = var.tls_tcp_proxy_enabled
   tags                                 = var.tags
   depends_on = [
