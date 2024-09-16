@@ -37,7 +37,7 @@ resource "azurerm_linux_function_app" "func_app" {
     application_insights_key               = azurerm_application_insights.ai.instrumentation_key
     application_insights_connection_string = azurerm_application_insights.ai.connection_string
     remote_debugging_enabled               = false
-    remote_debugging_version               = "VS2019"
+    remote_debugging_version               = "VS2022"
     vnet_route_all_enabled                 = true
     runtime_scale_monitoring_enabled       = true
     application_stack {
