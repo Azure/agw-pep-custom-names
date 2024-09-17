@@ -22,6 +22,7 @@ No modules.
 | [azurerm_route_table.gateway](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) | resource |
 | [azurerm_route_table.restrict](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) | resource |
 | [azurerm_subnet_route_table_association.gateway](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
+| [azurerm_subnet_route_table_association.restrict_apim](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
 | [azurerm_subnet_route_table_association.restrict_contoso](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
 | [azurerm_subnet_route_table_association.restrict_contoso_tests](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
 
@@ -29,6 +30,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_apim_subnet_id"></a> [apim\_subnet\_id](#input\_apim\_subnet\_id) | n/a | `any` | n/a | yes |
 | <a name="input_contoso_address_prefixes"></a> [contoso\_address\_prefixes](#input\_contoso\_address\_prefixes) | n/a | `any` | n/a | yes |
 | <a name="input_contoso_subnet_id"></a> [contoso\_subnet\_id](#input\_contoso\_subnet\_id) | n/a | `any` | n/a | yes |
 | <a name="input_contoso_tests_subnet_id"></a> [contoso\_tests\_subnet\_id](#input\_contoso\_tests\_subnet\_id) | n/a | `any` | n/a | yes |

@@ -6,16 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | > 0.14 |
-| <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | = 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | = 3.83.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.6.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azapi"></a> [azapi](#provider\_azapi) | = 1.0.0 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | = 3.83.0 |
+| <a name="provider_azapi"></a> [azapi](#provider\_azapi) | n/a |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
 
 ## Modules
 
@@ -25,8 +22,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azapi_update_resource.gateway_tcp](https://registry.terraform.io/providers/azure/azapi/1.0.0/docs/resources/update_resource) | resource |
-| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.83.0/docs/data-sources/client_config) | data source |
+| [azapi_update_resource.gateway_tcp](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/update_resource) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 
 ## Inputs
 

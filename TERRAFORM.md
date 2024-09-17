@@ -5,7 +5,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | > 0.14 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4.6 |
+| <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | 1.13.1 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | = 2.44.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | = 3.83.0 |
 | <a name="requirement_http"></a> [http](#requirement\_http) | >= 3.4.0 |
@@ -17,12 +18,13 @@
 |------|---------|
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.44.0 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.83.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.6.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.3 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_apim"></a> [apim](#module\_apim) | ./modules/apim | n/a |
 | <a name="module_app_gateway"></a> [app\_gateway](#module\_app\_gateway) | ./modules/app_gateway | n/a |
 | <a name="module_app_gateway_identity"></a> [app\_gateway\_identity](#module\_app\_gateway\_identity) | ./modules/managed_identity | n/a |
 | <a name="module_app_gateway_tcp"></a> [app\_gateway\_tcp](#module\_app\_gateway\_tcp) | ./modules/app_gateway_tcp | n/a |
@@ -62,6 +64,8 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_apim_address_prefixes"></a> [apim\_address\_prefixes](#input\_apim\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.6.0/24"<br>]</pre> | no |
+| <a name="input_apim_name"></a> [apim\_name](#input\_apim\_name) | n/a | `string` | `"apim-v2"` | no |
 | <a name="input_bastion_address_prefixes"></a> [bastion\_address\_prefixes](#input\_bastion\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.2.0/27"<br>]</pre> | no |
 | <a name="input_contoso_address_prefixes"></a> [contoso\_address\_prefixes](#input\_contoso\_address\_prefixes) | n/a | `list` | <pre>[<br>  "192.168.1.0/24"<br>]</pre> | no |
 | <a name="input_contoso_address_space"></a> [contoso\_address\_space](#input\_contoso\_address\_space) | n/a | `list` | <pre>[<br>  "192.168.0.0/16"<br>]</pre> | no |
@@ -75,6 +79,7 @@
 | <a name="input_deploy_sql"></a> [deploy\_sql](#input\_deploy\_sql) | true to deploy Azure SQL | `bool` | `true` | no |
 | <a name="input_deploy_vm_on_premises"></a> [deploy\_vm\_on\_premises](#input\_deploy\_vm\_on\_premises) | true to deploy a VM in the on-premises vnet | `bool` | `false` | no |
 | <a name="input_dns_address_prefixes"></a> [dns\_address\_prefixes](#input\_dns\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.1.0/24"<br>]</pre> | no |
+| <a name="input_enable_apim"></a> [enable\_apim](#input\_enable\_apim) | n/a | `bool` | `true` | no |
 | <a name="input_enable_gateway_key_vault_integration"></a> [enable\_gateway\_key\_vault\_integration](#input\_enable\_gateway\_key\_vault\_integration) | n/a | `bool` | `true` | no |
 | <a name="input_enable_gateway_route_to_firewall"></a> [enable\_gateway\_route\_to\_firewall](#input\_enable\_gateway\_route\_to\_firewall) | n/a | `bool` | `true` | no |
 | <a name="input_enable_network_policy_for_private_endpoints"></a> [enable\_network\_policy\_for\_private\_endpoints](#input\_enable\_network\_policy\_for\_private\_endpoints) | n/a | `bool` | `true` | no |
@@ -87,10 +92,12 @@
 | <a name="input_hub_jumpbox_address_prefixes"></a> [hub\_jumpbox\_address\_prefixes](#input\_hub\_jumpbox\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.3.0/24"<br>]</pre> | no |
 | <a name="input_jumpbox_address_prefixes"></a> [jumpbox\_address\_prefixes](#input\_jumpbox\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.4.0/24"<br>]</pre> | no |
 | <a name="input_keyvault_name"></a> [keyvault\_name](#input\_keyvault\_name) | Azure Key Vault Name | `string` | `"kv"` | no |
-| <a name="input_location"></a> [location](#input\_location) | Location | `string` | `"westeurope"` | no |
+| <a name="input_location"></a> [location](#input\_location) | Location | `string` | `"northeurope"` | no |
 | <a name="input_postgresql_name"></a> [postgresql\_name](#input\_postgresql\_name) | postgreSQL name | `string` | `"psql"` | no |
 | <a name="input_private_gateway_enabled"></a> [private\_gateway\_enabled](#input\_private\_gateway\_enabled) | true if Full Private Application Gateway feature is enabled | `bool` | `true` | no |
 | <a name="input_privateendpoints_address_prefixes"></a> [privateendpoints\_address\_prefixes](#input\_privateendpoints\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.3.0/24"<br>]</pre> | no |
+| <a name="input_publisher_email"></a> [publisher\_email](#input\_publisher\_email) | n/a | `string` | `"admin@contoso.com"` | no |
+| <a name="input_publisher_name"></a> [publisher\_name](#input\_publisher\_name) | n/a | `string` | `"contoso"` | no |
 | <a name="input_purview_name"></a> [purview\_name](#input\_purview\_name) | Purview name | `string` | `"pview"` | no |
 | <a name="input_remove_gateway_inbound_rules"></a> [remove\_gateway\_inbound\_rules](#input\_remove\_gateway\_inbound\_rules) | true to remove the Gateway Manager and Load Balancer inbound rules from NSGs | `bool` | `true` | no |
 | <a name="input_remove_public_ip"></a> [remove\_public\_ip](#input\_remove\_public\_ip) | true to delete them App Gateway public IP address | `bool` | `true` | no |

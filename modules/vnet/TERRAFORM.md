@@ -19,6 +19,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [azurerm_subnet.apim](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet.bastion](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet.contoso](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet.contoso_tests](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
@@ -39,6 +40,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_apim_address_prefixes"></a> [apim\_address\_prefixes](#input\_apim\_address\_prefixes) | n/a | `list` | `[]` | no |
 | <a name="input_bastion_address_prefixes"></a> [bastion\_address\_prefixes](#input\_bastion\_address\_prefixes) | n/a | `list` | `[]` | no |
 | <a name="input_contoso_address_prefixes"></a> [contoso\_address\_prefixes](#input\_contoso\_address\_prefixes) | n/a | `list` | `[]` | no |
 | <a name="input_contoso_address_space"></a> [contoso\_address\_space](#input\_contoso\_address\_space) | n/a | `list` | `[]` | no |
@@ -63,6 +65,8 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_subnet_apim_address_prefixes"></a> [subnet\_apim\_address\_prefixes](#output\_subnet\_apim\_address\_prefixes) | n/a |
+| <a name="output_subnet_apim_id"></a> [subnet\_apim\_id](#output\_subnet\_apim\_id) | n/a |
 | <a name="output_subnet_bastion_id"></a> [subnet\_bastion\_id](#output\_subnet\_bastion\_id) | n/a |
 | <a name="output_subnet_contoso_id"></a> [subnet\_contoso\_id](#output\_subnet\_contoso\_id) | n/a |
 | <a name="output_subnet_contoso_tests_id"></a> [subnet\_contoso\_tests\_id](#output\_subnet\_contoso\_tests\_id) | n/a |

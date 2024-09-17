@@ -47,6 +47,8 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_appi_id"></a> [appi\_id](#output\_appi\_id) | n/a |
+| <a name="output_appi_key"></a> [appi\_key](#output\_appi\_key) | n/a |
 | <a name="output_fqdn"></a> [fqdn](#output\_fqdn) | n/a |
 | <a name="output_private_fqdn"></a> [private\_fqdn](#output\_private\_fqdn) | n/a |
 | <a name="output_private_ip_address"></a> [private\_ip\_address](#output\_private\_ip\_address) | n/a |
