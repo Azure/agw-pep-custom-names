@@ -32,6 +32,7 @@ resource "azurerm_linux_function_app" "func_app" {
   tags                                           = var.tags
   ftp_publish_basic_authentication_enabled       = false
   webdeploy_publish_basic_authentication_enabled = false
+  public_network_access_enabled                  = false
 
   site_config {
     application_insights_key               = azurerm_application_insights.ai.instrumentation_key
