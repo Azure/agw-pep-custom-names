@@ -21,3 +21,11 @@ output "scm_private_fqdn" {
 output "scm_fqdn" {
   value = "${azurerm_linux_function_app.func_app.name}.scm.azurewebsites.net"
 }
+
+output "appi_id" {
+  value = azurerm_application_insights.ai.id
+}
+
+output "appi_key" {
+  value = azurerm_application_insights.ai.instrumentation_key
+}
