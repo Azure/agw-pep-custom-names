@@ -133,6 +133,24 @@ resource "azurerm_subnet" "flexible_server" {
   }
 }
 
+# Create the Subnet for APIM
+resource "azurerm_subnet" "apim" {
+  name                 = "apim"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.spoke.name
+  address_prefixes     = var.apim_address_prefixes
+
+  delegation {
+    name = "apim-delegation"
+    service_delegation {
+      name = "Microsoft.Web/serverFarms"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/action",
+      ]
+    }
+  }
+}
+
 # Create on-premises
 resource "azurerm_virtual_network" "contoso" {
   name                = "vnet-contoso"

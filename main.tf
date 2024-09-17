@@ -24,6 +24,7 @@ locals {
   sql_name                        = "${var.sql_name}-${local.name_sufix}"
   postgresql_name                 = "${var.postgresql_name}-${local.name_sufix}"
   postgresql_flexible_server_name = "${var.postgresql_name}-fs-${local.name_sufix}"
+  apim_name                       = "${var.apim_name}-${local.name_sufix}"
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -57,6 +58,7 @@ module "vnet" {
   contoso_address_prefixes                    = var.contoso_address_prefixes
   contoso_tests_address_prefixes              = var.contoso_tests_address_prefixes
   flexible_server_address_prefixes            = var.flexible_server_address_prefixes
+  apim_address_prefixes                       = var.apim_address_prefixes
   tags                                        = var.tags
 }
 
@@ -91,6 +93,7 @@ module "nsg" {
     module.vnet.subnet_jumpbox_id,
     module.vnet.subnet_hub_jumpbox_id,
     module.vnet.subnet_contoso_id,
+    module.vnet.subnet_apim_id,
   ]
   aci_subnet_ids = [
     module.vnet.subnet_dns_id,
@@ -150,7 +153,7 @@ module "firewall" {
   firewall_subnet_id       = module.vnet.subnet_firewall_id
   gateway_address_prefixes = module.vnet.subnet_gateway_address_prefixes
   dns_address_prefixes     = module.vnet.subnet_dns_address_prefixes
-  contoso_address_prefixes = module.vnet.vnet_contoso_address_space
+  contoso_address_prefixes = concat(module.vnet.vnet_contoso_address_space, module.vnet.subnet_apim_address_prefixes)
   tags                     = var.tags
   depends_on = [
     module.nsg,
@@ -172,6 +175,7 @@ module "udr" {
   contoso_address_prefixes         = module.vnet.vnet_contoso_address_space
   gateway_subnet_id                = module.vnet.subnet_gateway_id
   spoke_address_prefixes           = module.vnet.vnet_spoke_address_space
+  apim_subnet_id                   = module.vnet.subnet_apim_id
   enable_gateway_route_to_firewall = var.enable_gateway_route_to_firewall
   tags                             = var.tags
 }
@@ -479,6 +483,27 @@ module "onpremises_tests" {
   postgresql_name              = var.deploy_postgresql ? "postgresql.contoso.corp" : ""
   postgresql_password          = var.deploy_postgresql ? module.postgresql[0].password : ""
   postgresql_server_name       = var.deploy_postgresql ? module.postgresql[0].server_name : ""
+
+  depends_on = [
+    module.app_gateway,
+    module.app_gateway_tcp,
+    module.udr
+  ]
+}
+
+module "apim" {
+  count                    = var.enable_apim ? 1 : 0
+  source                   = "./modules/apim"
+  location                 = azurerm_resource_group.rg.location
+  resource_group_id        = azurerm_resource_group.rg.id
+  resource_group_name      = azurerm_resource_group.rg.name
+  apim_name                = local.apim_name
+  apim_subnet_id           = module.vnet.subnet_apim_id
+  publisher_name           = var.publisher_name
+  publisher_email          = var.publisher_email
+  appi_resource_id         = var.enable_apim ? module.function[0].appi_id : ""
+  appi_instrumentation_key = var.enable_apim ? module.function[0].appi_key : ""
+  function_fqdn            = var.deploy_function ? module.function[0].fqdn : ""
 
   depends_on = [
     module.app_gateway,

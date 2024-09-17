@@ -8,6 +8,7 @@ variable "contoso_tests_subnet_id" {}
 variable "contoso_address_prefixes" {}
 variable "spoke_address_prefixes" {}
 variable "gateway_subnet_id" {}
+variable "apim_subnet_id" {}
 variable "enable_gateway_route_to_firewall" {}
 variable "tags" {
   default = {}

@@ -1,0 +1,10 @@
+variable "resource_group_name" {}
+variable "resource_group_id" {}
+variable "location" {}
+variable "apim_name" {}
+variable "publisher_name" {}
+variable "publisher_email" {}
+variable "apim_subnet_id" {}
+variable "appi_resource_id" {}
+variable "appi_instrumentation_key" {}
+variable "function_fqdn" {}

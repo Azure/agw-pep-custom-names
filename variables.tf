@@ -5,7 +5,7 @@ variable "resource_group" {
 
 # Location
 variable "location" {
-  default = "westeurope"
+  default = "northeurope"
 }
 
 # Cosmos DB database name
@@ -119,6 +119,10 @@ variable "enable_network_policy_for_private_endpoints" {
   default = true
 }
 
+variable "enable_apim" {
+  default = true
+}
+
 variable "hub_address_space" {
   default = ["10.5.0.0/16"]
 }
@@ -167,6 +171,10 @@ variable "flexible_server_address_prefixes" {
   default = ["10.6.5.0/24"]
 }
 
+variable "apim_address_prefixes" {
+  default = ["10.6.6.0/24"]
+}
+
 variable "contoso_address_space" {
   default = ["192.168.0.0/16"]
 }
@@ -177,6 +185,18 @@ variable "contoso_address_prefixes" {
 
 variable "contoso_tests_address_prefixes" {
   default = ["192.168.2.0/24"]
+}
+
+variable "publisher_name" {
+  default = "contoso"
+}
+
+variable "publisher_email" {
+  default = "admin@contoso.com"
+}
+
+variable "apim_name" {
+  default = "apim-v2"
 }
 
 # Resource Tags

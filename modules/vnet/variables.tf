@@ -50,6 +50,10 @@ variable "flexible_server_address_prefixes" {
   default = []
 }
 
+variable "apim_address_prefixes" {
+  default = []
+}
+
 variable "contoso_address_space" {
   default = []
 }

@@ -22,6 +22,10 @@ output "subnet_dns_address_prefixes" {
   value = azurerm_subnet.dns.address_prefixes
 }
 
+output"subnet_apim_address_prefixes" {
+  value = azurerm_subnet.apim.address_prefixes
+}
+
 output "vnet_contoso_address_space" {
   value = azurerm_virtual_network.contoso.address_space
 }
@@ -48,6 +52,10 @@ output "subnet_privateendpoints_id" {
 
 output "subnet_flexible_server_id" {
   value = azurerm_subnet.flexible_server.id
+}
+
+output "subnet_apim_id" {
+  value = azurerm_subnet.apim.id
 }
 
 output "vnet_hub_id" {

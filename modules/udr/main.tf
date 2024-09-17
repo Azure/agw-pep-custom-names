@@ -37,6 +37,12 @@ resource "azurerm_subnet_route_table_association" "restrict_contoso_tests" {
   route_table_id = azurerm_route_table.restrict.id
 }
 
+# Attach UDR to the APIM subnet
+resource "azurerm_subnet_route_table_association" "restrict_apim" {
+  subnet_id      = var.apim_subnet_id
+  route_table_id = azurerm_route_table.restrict.id
+}
+
 # Create UDR for the gateway subnet
 resource "azurerm_route_table" "gateway" {
   name                          = "${var.udr_name}-gateway"
@@ -58,9 +64,9 @@ resource "azurerm_route_table" "gateway" {
   dynamic "route" {
     for_each = local.routes_to_internet
     content {
-      name                   = "to-internet"
-      address_prefix         = "0.0.0.0/0"
-      next_hop_type          = "Internet"
+      name           = "to-internet"
+      address_prefix = "0.0.0.0/0"
+      next_hop_type  = "Internet"
     }
   }
 
