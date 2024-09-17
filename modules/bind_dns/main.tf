@@ -9,7 +9,7 @@ resource "azurerm_container_group" "containergroup" {
 
   container {
     name   = "bind"
-    image  = "cmendibl3/dnsforwarder"
+    image  = "ghcr.io/azure/agw-pep-custom-names/dnsforwarder:latest"
     cpu    = "1"
     memory = "1"
 
