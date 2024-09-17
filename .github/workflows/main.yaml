@@ -15,6 +15,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   AGW_ARTIFACT_NAME: agw-pep-custom-names-tf-modules
+  DNS_IMAGE_NAME: dnsforwarder
 
 jobs:
   tfsec:
@@ -90,6 +91,21 @@ jobs:
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ env.REGISTRY }}/${{ env.GITHUB_REPOSITORY_LOWER_CASE }}/agw-pep-custom-names:${{ env.MINVERVERSIONOVERRIDE }}
         labels: ${{ steps.meta.outputs.labels }}
+    
+    - name: Extract metadata (tags, labels) for dns Docker
+      id: meta-docs
+      uses: docker/metadata-action@v3
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.DNS_IMAGE_NAME }}
+
+    - name: Build and push Docker image for dns
+      uses: docker/build-push-action@v3
+      with:
+        context: ./modules/bind_dns/bind
+        file: ./modules/bind_dns/bind/Dockerfile
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ env.REGISTRY }}/${{ env.GITHUB_REPOSITORY_LOWER_CASE }}/${{ env.DNS_IMAGE_NAME }}:latest
+        labels: ${{ steps.meta-docs.outputs.labels }}
 
   artifacts:
     name: Create artifacts
