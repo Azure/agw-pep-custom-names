@@ -54,6 +54,15 @@ Application Gateway | TLS / TCP Proxy.
 
 ## Running the Tests
 
+## Prerequisites
+
+Onboqard to Private Application Gateway deployment and TLS Proxy previews:
+
+``` powershell
+az feature register --name EnableApplicationGatewayNetworkIsolation --namespace Microsoft.Network
+az feature register --name AllowApplicationGatewayTlsProxy --namespace Microsoft.Network
+```
+
 ## Deploy the Solution
 
 By running the following command, you will deploy the solution to your Azure subscription.
