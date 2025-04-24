@@ -9,6 +9,14 @@ resource "azurerm_service_plan" "plan" {
   worker_count        = 1
 }
 
+resource "azurerm_log_analytics_workspace" "logs" {
+  name                = "log-${var.function_name}"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
 # Create Application Insights
 resource "azurerm_application_insights" "ai" {
   name                = "appi-${var.function_name}"
@@ -17,6 +25,7 @@ resource "azurerm_application_insights" "ai" {
   application_type    = "web"
   retention_in_days   = 90
   tags                = var.tags
+  workspace_id        = azurerm_log_analytics_workspace.logs.id
 }
 
 resource "azurerm_linux_function_app" "func_app" {
