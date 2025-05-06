@@ -19,6 +19,12 @@ resource "azurerm_route_table" "restrict" {
   }
 
   route {
+    name           = "apim-management-to-internet"
+    address_prefix = "ApiManagement"
+    next_hop_type  = "Internet"
+  }
+
+  route {
     name           = "firewall-to-internet"
     address_prefix = "${var.firewall_public_ip_address}/32"
     next_hop_type  = "Internet"

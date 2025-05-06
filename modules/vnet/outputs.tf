@@ -22,7 +22,7 @@ output "subnet_dns_address_prefixes" {
   value = azurerm_subnet.dns.address_prefixes
 }
 
-output"subnet_apim_address_prefixes" {
+output "subnet_apim_address_prefixes" {
   value = azurerm_subnet.apim.address_prefixes
 }
 

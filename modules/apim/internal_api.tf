@@ -2,7 +2,7 @@
 resource "azurerm_api_management_backend" "fucntion_backend" {
   name                = "function"
   resource_group_name = var.resource_group_name
-  api_management_name = azapi_resource.apim.name
+  api_management_name = azurerm_api_management.apim.name
   protocol            = "http"
   url                 = "https://${var.function_fqdn}"
 }
@@ -10,7 +10,7 @@ resource "azurerm_api_management_backend" "fucntion_backend" {
 resource "azurerm_api_management_api" "function" {
   name                = "function"
   resource_group_name = var.resource_group_name
-  api_management_name = azapi_resource.apim.name
+  api_management_name = azurerm_api_management.apim.name
   revision            = "1"
   display_name        = "function"
   path                = "function"
@@ -22,7 +22,7 @@ resource "azurerm_api_management_api" "function" {
 resource "azurerm_api_management_api_operation" "function_operation" {
   operation_id        = "function"
   api_name            = azurerm_api_management_api.function.name
-  api_management_name = azapi_resource.apim.name
+  api_management_name = azurerm_api_management.apim.name
   resource_group_name = var.resource_group_name
   display_name        = "GET"
   method              = "GET"

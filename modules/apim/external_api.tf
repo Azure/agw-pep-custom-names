@@ -2,7 +2,7 @@
 resource "azurerm_api_management_backend" "backend" {
   name                = "me"
   resource_group_name = var.resource_group_name
-  api_management_name = azapi_resource.apim.name
+  api_management_name = azurerm_api_management.apim.name
   protocol            = "http"
   url                 = "https://carlos.mendible.com"
 }
@@ -10,7 +10,7 @@ resource "azurerm_api_management_backend" "backend" {
 resource "azurerm_api_management_api" "me" {
   name                = "me"
   resource_group_name = var.resource_group_name
-  api_management_name = azapi_resource.apim.name
+  api_management_name = azurerm_api_management.apim.name
   revision            = "1"
   display_name        = "me"
   path                = "me"
@@ -22,7 +22,7 @@ resource "azurerm_api_management_api" "me" {
 resource "azurerm_api_management_api_operation" "me_operation" {
   operation_id        = "me"
   api_name            = azurerm_api_management_api.me.name
-  api_management_name = azapi_resource.apim.name
+  api_management_name = azurerm_api_management.apim.name
   resource_group_name = var.resource_group_name
   display_name        = "GET"
   method              = "GET"

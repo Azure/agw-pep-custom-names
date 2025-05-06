@@ -19,6 +19,7 @@ variable "subnet_ids" {
 variable "aci_subnet_ids" {
   default = []
 }
+variable "apim_subnet_id" {}
 variable "tags" {
   default = {}
 }

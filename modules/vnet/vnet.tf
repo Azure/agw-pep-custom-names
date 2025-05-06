@@ -139,16 +139,6 @@ resource "azurerm_subnet" "apim" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.spoke.name
   address_prefixes     = var.apim_address_prefixes
-
-  delegation {
-    name = "apim-delegation"
-    service_delegation {
-      name = "Microsoft.Web/serverFarms"
-      actions = [
-        "Microsoft.Network/virtualNetworks/subnets/action",
-      ]
-    }
-  }
 }
 
 # Create on-premises

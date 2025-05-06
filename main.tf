@@ -25,10 +25,11 @@ locals {
   postgresql_name                 = "${var.postgresql_name}-${local.name_sufix}"
   postgresql_flexible_server_name = "${var.postgresql_name}-fs-${local.name_sufix}"
   apim_name                       = "${var.apim_name}-${local.name_sufix}"
+  resource_group_name             = "${var.resource_group}-${local.name_sufix}"
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group
+  name     = local.resource_group_name
   location = var.location
 }
 
@@ -92,14 +93,14 @@ module "nsg" {
     module.vnet.subnet_privateendpoints_id,
     module.vnet.subnet_jumpbox_id,
     module.vnet.subnet_hub_jumpbox_id,
-    module.vnet.subnet_contoso_id,
-    module.vnet.subnet_apim_id,
+    module.vnet.subnet_contoso_id
   ]
   aci_subnet_ids = [
     module.vnet.subnet_dns_id,
     module.vnet.subnet_contoso_tests_id
   ]
-  tags = var.tags
+  apim_subnet_id = module.vnet.subnet_apim_id
+  tags           = var.tags
 }
 
 # Create VNET Gateway
@@ -508,6 +509,7 @@ module "apim" {
   depends_on = [
     module.app_gateway,
     module.app_gateway_tcp,
+    module.current_public_ip,
     module.udr
   ]
 }
