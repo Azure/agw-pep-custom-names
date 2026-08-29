@@ -27,6 +27,7 @@ jobs:
       - name: Terraform security scan
         uses: triat/terraform-security-scan@759b7cf3d32c770760ffa5ffb68d03276969e5ca # v3.1.0
         with:
+          tfsec_version: v1.28.10
           tfsec_exclude: azure-keyvault-no-purge,azure-storage-queue-services-logging-enabled,azure-storage-allow-microsoft-service-bypass,azure-network-no-public-egress,azure-network-no-public-ingress,azure-network-disable-rdp-from-internet,azure-network-ssh-blocked-from-internet,azure-database-postgres-configuration-log-connections,azure-database-postgres-configuration-connection-throttling,azure-database-no-public-access,azure-database-postgres-configuration-log-checkpoints,azure-database-secure-tls-policy,azure-database-enable-audit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
