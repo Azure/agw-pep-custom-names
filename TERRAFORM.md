@@ -64,12 +64,12 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_apim_address_prefixes"></a> [apim\_address\_prefixes](#input\_apim\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.6.0/24"<br>]</pre> | no |
+| <a name="input_apim_address_prefixes"></a> [apim\_address\_prefixes](#input\_apim\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.6.6.0/24"<br/>]</pre> | no |
 | <a name="input_apim_name"></a> [apim\_name](#input\_apim\_name) | n/a | `string` | `"apim-v2"` | no |
-| <a name="input_bastion_address_prefixes"></a> [bastion\_address\_prefixes](#input\_bastion\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.2.0/27"<br>]</pre> | no |
-| <a name="input_contoso_address_prefixes"></a> [contoso\_address\_prefixes](#input\_contoso\_address\_prefixes) | n/a | `list` | <pre>[<br>  "192.168.1.0/24"<br>]</pre> | no |
-| <a name="input_contoso_address_space"></a> [contoso\_address\_space](#input\_contoso\_address\_space) | n/a | `list` | <pre>[<br>  "192.168.0.0/16"<br>]</pre> | no |
-| <a name="input_contoso_tests_address_prefixes"></a> [contoso\_tests\_address\_prefixes](#input\_contoso\_tests\_address\_prefixes) | n/a | `list` | <pre>[<br>  "192.168.2.0/24"<br>]</pre> | no |
+| <a name="input_bastion_address_prefixes"></a> [bastion\_address\_prefixes](#input\_bastion\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.5.2.0/27"<br/>]</pre> | no |
+| <a name="input_contoso_address_prefixes"></a> [contoso\_address\_prefixes](#input\_contoso\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "192.168.1.0/24"<br/>]</pre> | no |
+| <a name="input_contoso_address_space"></a> [contoso\_address\_space](#input\_contoso\_address\_space) | n/a | `list` | <pre>[<br/>  "192.168.0.0/16"<br/>]</pre> | no |
+| <a name="input_contoso_tests_address_prefixes"></a> [contoso\_tests\_address\_prefixes](#input\_contoso\_tests\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "192.168.2.0/24"<br/>]</pre> | no |
 | <a name="input_cosmos_name"></a> [cosmos\_name](#input\_cosmos\_name) | Cosmos DB database name | `string` | `"cosmos"` | no |
 | <a name="input_deploy_cosmos"></a> [deploy\_cosmos](#input\_deploy\_cosmos) | true to deploy Cosmos DB | `bool` | `true` | no |
 | <a name="input_deploy_function"></a> [deploy\_function](#input\_deploy\_function) | true to deploy Azure Function | `bool` | `true` | no |
@@ -78,24 +78,24 @@
 | <a name="input_deploy_purview"></a> [deploy\_purview](#input\_deploy\_purview) | true to deploy Azure Purview | `bool` | `false` | no |
 | <a name="input_deploy_sql"></a> [deploy\_sql](#input\_deploy\_sql) | true to deploy Azure SQL | `bool` | `true` | no |
 | <a name="input_deploy_vm_on_premises"></a> [deploy\_vm\_on\_premises](#input\_deploy\_vm\_on\_premises) | true to deploy a VM in the on-premises vnet | `bool` | `false` | no |
-| <a name="input_dns_address_prefixes"></a> [dns\_address\_prefixes](#input\_dns\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.1.0/24"<br>]</pre> | no |
+| <a name="input_dns_address_prefixes"></a> [dns\_address\_prefixes](#input\_dns\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.5.1.0/24"<br/>]</pre> | no |
 | <a name="input_enable_apim"></a> [enable\_apim](#input\_enable\_apim) | n/a | `bool` | `true` | no |
 | <a name="input_enable_gateway_key_vault_integration"></a> [enable\_gateway\_key\_vault\_integration](#input\_enable\_gateway\_key\_vault\_integration) | n/a | `bool` | `true` | no |
 | <a name="input_enable_gateway_route_to_firewall"></a> [enable\_gateway\_route\_to\_firewall](#input\_enable\_gateway\_route\_to\_firewall) | n/a | `bool` | `true` | no |
 | <a name="input_enable_network_policy_for_private_endpoints"></a> [enable\_network\_policy\_for\_private\_endpoints](#input\_enable\_network\_policy\_for\_private\_endpoints) | n/a | `bool` | `true` | no |
 | <a name="input_eventhub_name"></a> [eventhub\_name](#input\_eventhub\_name) | Event Hub Name | `string` | `"evh"` | no |
-| <a name="input_firewall_address_prefixes"></a> [firewall\_address\_prefixes](#input\_firewall\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.0.0/26"<br>]</pre> | no |
-| <a name="input_flexible_server_address_prefixes"></a> [flexible\_server\_address\_prefixes](#input\_flexible\_server\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.5.0/24"<br>]</pre> | no |
+| <a name="input_firewall_address_prefixes"></a> [firewall\_address\_prefixes](#input\_firewall\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.5.0.0/26"<br/>]</pre> | no |
+| <a name="input_flexible_server_address_prefixes"></a> [flexible\_server\_address\_prefixes](#input\_flexible\_server\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.6.5.0/24"<br/>]</pre> | no |
 | <a name="input_func_name"></a> [func\_name](#input\_func\_name) | Function App name | `string` | `"func"` | no |
-| <a name="input_gateway_address_prefixes"></a> [gateway\_address\_prefixes](#input\_gateway\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.1.0/24"<br>]</pre> | no |
-| <a name="input_hub_address_space"></a> [hub\_address\_space](#input\_hub\_address\_space) | n/a | `list` | <pre>[<br>  "10.5.0.0/16"<br>]</pre> | no |
-| <a name="input_hub_jumpbox_address_prefixes"></a> [hub\_jumpbox\_address\_prefixes](#input\_hub\_jumpbox\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.3.0/24"<br>]</pre> | no |
-| <a name="input_jumpbox_address_prefixes"></a> [jumpbox\_address\_prefixes](#input\_jumpbox\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.4.0/24"<br>]</pre> | no |
+| <a name="input_gateway_address_prefixes"></a> [gateway\_address\_prefixes](#input\_gateway\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.6.1.0/24"<br/>]</pre> | no |
+| <a name="input_hub_address_space"></a> [hub\_address\_space](#input\_hub\_address\_space) | n/a | `list` | <pre>[<br/>  "10.5.0.0/16"<br/>]</pre> | no |
+| <a name="input_hub_jumpbox_address_prefixes"></a> [hub\_jumpbox\_address\_prefixes](#input\_hub\_jumpbox\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.5.3.0/24"<br/>]</pre> | no |
+| <a name="input_jumpbox_address_prefixes"></a> [jumpbox\_address\_prefixes](#input\_jumpbox\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.6.4.0/24"<br/>]</pre> | no |
 | <a name="input_keyvault_name"></a> [keyvault\_name](#input\_keyvault\_name) | Azure Key Vault Name | `string` | `"kv"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Location | `string` | `"northeurope"` | no |
 | <a name="input_postgresql_name"></a> [postgresql\_name](#input\_postgresql\_name) | postgreSQL name | `string` | `"psql"` | no |
 | <a name="input_private_gateway_enabled"></a> [private\_gateway\_enabled](#input\_private\_gateway\_enabled) | true if Full Private Application Gateway feature is enabled | `bool` | `true` | no |
-| <a name="input_privateendpoints_address_prefixes"></a> [privateendpoints\_address\_prefixes](#input\_privateendpoints\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.3.0/24"<br>]</pre> | no |
+| <a name="input_privateendpoints_address_prefixes"></a> [privateendpoints\_address\_prefixes](#input\_privateendpoints\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.6.3.0/24"<br/>]</pre> | no |
 | <a name="input_publisher_email"></a> [publisher\_email](#input\_publisher\_email) | n/a | `string` | `"admin@contoso.com"` | no |
 | <a name="input_publisher_name"></a> [publisher\_name](#input\_publisher\_name) | n/a | `string` | `"contoso"` | no |
 | <a name="input_purview_name"></a> [purview\_name](#input\_purview\_name) | Purview name | `string` | `"pview"` | no |
@@ -103,13 +103,13 @@
 | <a name="input_remove_public_ip"></a> [remove\_public\_ip](#input\_remove\_public\_ip) | true to delete them App Gateway public IP address | `bool` | `true` | no |
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | Resource Group Name | `string` | `"rg-agw-pep"` | no |
 | <a name="input_sa_name"></a> [sa\_name](#input\_sa\_name) | Storage Account name | `string` | `"st"` | no |
-| <a name="input_spoke_address_space"></a> [spoke\_address\_space](#input\_spoke\_address\_space) | n/a | `list` | <pre>[<br>  "10.6.0.0/16"<br>]</pre> | no |
+| <a name="input_spoke_address_space"></a> [spoke\_address\_space](#input\_spoke\_address\_space) | n/a | `list` | <pre>[<br/>  "10.6.0.0/16"<br/>]</pre> | no |
 | <a name="input_sql_name"></a> [sql\_name](#input\_sql\_name) | SQL name | `string` | `"sql"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Resource Tags | `map` | <pre>{<br>  "env": "contoso-application-gateway-tests"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Resource Tags | `map` | <pre>{<br/>  "env": "contoso-application-gateway-tests"<br/>}</pre> | no |
 | <a name="input_tls_tcp_proxy_enabled"></a> [tls\_tcp\_proxy\_enabled](#input\_tls\_tcp\_proxy\_enabled) | true if TLS/TCP Proxy feature is enabled | `bool` | `true` | no |
 | <a name="input_use_public_fqdn"></a> [use\_public\_fqdn](#input\_use\_public\_fqdn) | true to use public FQDN for App Gateway's backednd configuration | `bool` | `true` | no |
-| <a name="input_vnet_gateway_address_prefixes"></a> [vnet\_gateway\_address\_prefixes](#input\_vnet\_gateway\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.5.4.0/24"<br>]</pre> | no |
-| <a name="input_vnet_integration_address_prefixes"></a> [vnet\_integration\_address\_prefixes](#input\_vnet\_integration\_address\_prefixes) | n/a | `list` | <pre>[<br>  "10.6.2.0/24"<br>]</pre> | no |
+| <a name="input_vnet_gateway_address_prefixes"></a> [vnet\_gateway\_address\_prefixes](#input\_vnet\_gateway\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.5.4.0/24"<br/>]</pre> | no |
+| <a name="input_vnet_integration_address_prefixes"></a> [vnet\_integration\_address\_prefixes](#input\_vnet\_integration\_address\_prefixes) | n/a | `list` | <pre>[<br/>  "10.6.2.0/24"<br/>]</pre> | no |
 
 ## Outputs
 
